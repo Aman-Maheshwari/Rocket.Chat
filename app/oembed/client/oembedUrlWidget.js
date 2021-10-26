@@ -25,7 +25,7 @@ Template.oembedUrlWidget.helpers({
 	description() {
 		const description = getDescription(this);
 		if (_.isString(description)) {
-			return description;
+			return description.length < 350 ? description : `${ description.slice(0, 350) } ....`;
 		}
 	},
 	title() {

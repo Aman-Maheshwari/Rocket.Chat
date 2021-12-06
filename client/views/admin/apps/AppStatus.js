@@ -39,7 +39,7 @@ const actions = {
 	},
 };
 
-const AppStatus = ({ app, showStatus = true, ...props }) => {
+const AppStatus = ({ app, showStatus = false, setFocused, ...props }) => {
 	const t = useTranslation();
 	const [loading, setLoading] = useSafely(useState());
 	const [isAppPurchased, setPurchased] = useSafely(useState(app.isPurchased));
@@ -100,6 +100,7 @@ const AppStatus = ({ app, showStatus = true, ...props }) => {
 		if (!isLoggedIn) {
 			setLoading(false);
 			setModal(<CloudLoginModal />);
+			setFocused(false);
 			return;
 		}
 
@@ -122,6 +123,10 @@ const AppStatus = ({ app, showStatus = true, ...props }) => {
 		showAppPermissionsReviewModal();
 	};
 
+	console.log('button.label = ', button?.label);
+	console.log('status label = ', status?.label);
+	console.log('show status = ', showStatus);
+	console.log('loading  = ', loading);
 	return (
 		<Box {...props}>
 			{button && (

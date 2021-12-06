@@ -34,7 +34,8 @@ const MarketplaceRow: FC<MarketplaceRowProps> = ({ medium, large, ...props }) =>
 	const [isFocused, setFocused] = useState(false);
 	const [isHovered, setHovered] = useState(false);
 	const isStatusVisible = isFocused || isHovered;
-
+	// console.log('installed = ', installed);
+	console.log('focused = ', isFocused, 'hovered = ', isHovered);
 	const marketplaceRoute = useRoute('admin-marketplace');
 
 	const handleClick = (): void => {
@@ -116,7 +117,12 @@ const MarketplaceRow: FC<MarketplaceRowProps> = ({ medium, large, ...props }) =>
 					marginInline='neg-x8'
 					onClick={preventClickPropagation}
 				>
-					<AppStatus app={props} showStatus={isStatusVisible} marginInline='x8' />
+					<AppStatus
+						app={props}
+						showStatus={isStatusVisible}
+						setFocused={setFocused}
+						marginInline='x8'
+					/>
 					{installed && <AppMenu app={props} invisible={!isStatusVisible} marginInline='x8' />}
 				</Box>
 			</Table.Cell>
